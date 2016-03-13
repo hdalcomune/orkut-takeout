@@ -26,3 +26,4 @@ Things you may want to cover:
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
+{<img src="https://coveralls.io/repos/github/hdalcomune/orkut-takeout/badge.svg?branch=master" alt="Coverage Status" />}[https://coveralls.io/github/hdalcomune/orkut-takeout?branch=master]
