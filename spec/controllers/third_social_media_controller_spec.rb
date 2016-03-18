@@ -41,10 +41,12 @@ describe ThirdSocialMediaController do
     allow(RestClient::Request).to receive(:execute).with(hash_including(url:/users\/me/)).and_return(user_stubbed_response)
 
     get :export, user: "my_user", password: "my_password"
-    p response.body
-    expect(response.body).to_not be_nil
-    #expect(response.body).to match(/<name>Henrique Dalcomune<\/name>\s+<email>hdalcomune@avenuecode.com<\/email>\s+<socialType>FRIENDLY<\/socialType>/)
-    #expect(response.body).to match(/<friend>\s+<name>.+<\/name>\s+<email>.+<\/email>\s+<\/friend>/)
+    json_response = JSON.parse(response.body)
+    expect(json_response["user"]["name"]).to include "Henrique Dalcomune"
+    expect(json_response["user"]["email"]).to include "hdalcomune@avenuecode.com"
+    expect(json_response["friends"][0]["name"]).to include "QA Couse User 1"
+    expect(json_response["friends"][0]["email"]).to include "qacourseuser1@avenuecode.com"
+    expect(json_response["friends"].size).to eq 5
   end
 
 end
